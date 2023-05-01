@@ -1,13 +1,38 @@
-# Sample Hardhat Project
+# Create My Own ERC20 Token (ETH Proof Intermediate Project 3)
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+This program is a Solidity smart contract that creates a new ERC20 token (called Nebula) and is integrated to a React frontend.
 
-Try running some of the following tasks:
+This program was created as a project for the [Metacrafters ETH Proof Intermediate course](https://academy.metacrafters.io/content/solidity-intermediate).
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+## Description
+
+The application allows the user to connect their Metamask wallet and then mint, transfer and burn Nebula tokens, as well as see the account balance and token's total supply.
+
+The Solidity smart contract is a derived contract from OpenZeppelin's ERC20 that has 5 additional functions: `getBalance()`, `mintToken()`, `transferToken()`, `burnToken()`, and `getTotalSupply()`.
+
+The React frontend connects to this contract and calls its functions to display the token info and to allow user to interact with their tokens.
+
+## Getting Started
+
+### Executing program
+
+To run the smart contract alone, you can use [Remix](https://remix.ethereum.org/), an online Solidity IDE.
+
+To run entire application, run the following in the project directory:
+
+1. `npm install`
+    - Installs dependencies
+2. `npx hardhat node`
+    - Creates a local Ethereum node on your computer
+3. `npx hardhat run --network localhost scripts/deploy.js`
+    - Deploys the contract on the local node using the deploy.js script
+4. `npm start` (in the "frontend" directory)
+    - Runs the frontend
+
+## Video Walkthrough
+
+Here's a video of me explaining my solution: [Video walkthrough](https://drive.google.com/file/d/1GyP3JR5qUSsgwZXunECtv_xbBA9bibkN/view?usp=sharing)
+
+## Author
+
+Charmaine Eunice Rabano
