@@ -6,7 +6,7 @@ This program was created as a project for the [Metacrafters ETH Proof Intermedia
 
 ## Description
 
-The application allows the user to connect their Metamask wallet and then mint, transfer and burn Nebula tokens, as well as see the account balance and token's total supply.
+The application allows the owner to mint Nebula tokens, and allows any user to connect their Metamask wallet and then transfer and burn Nebula tokens, as well as see the account balance and token's total supply.
 
 The Solidity smart contract is a derived contract from OpenZeppelin's ERC20 that has 5 additional functions: `getBalance()`, `mintToken()`, `transferToken()`, `burnToken()`, and `getTotalSupply()`.
 
@@ -31,7 +31,7 @@ To run entire application, run the following in the project directory:
 
 ## Video Walkthrough
 
-Here's a video of me explaining my solution: [Video walkthrough](https://drive.google.com/file/d/1GyP3JR5qUSsgwZXunECtv_xbBA9bibkN/view?usp=sharing)
+Here's a video of me explaining my solution: [Video walkthrough](https://drive.google.com/file/d/1S2xn0BKqxdct2s9FQMVNoGONYGVFSVs2/view?usp=sharing)
 
 ## Author
 
