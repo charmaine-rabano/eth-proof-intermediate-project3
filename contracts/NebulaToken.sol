@@ -13,7 +13,7 @@ pragma solidity ^0.8.18;
     -   Tokens are minted to your wallet
     -   Includes a front-end
 
-    In summary: create own token (if owner), get balance, mint to address, burn, transfer, and create frontend
+    In summary: create own token, get balance, mint to address (if owner), burn, transfer, and create frontend
 */
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
