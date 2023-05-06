@@ -13,23 +13,32 @@ pragma solidity ^0.8.18;
     -   Tokens are minted to your wallet
     -   Includes a front-end
 
-    In summary: create own token, get balance, mint to address, burn, transfer, and create frontend
+    In summary: create own token (if owner), get balance, mint to address, burn, transfer, and create frontend
 */
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract NebulaToken is ERC20 {
 
+    address public owner;
+
     // Create the Nebula token
-    constructor() ERC20("Nebula", "NBL") {}
+    constructor() ERC20("Nebula", "NBL") {
+        owner = msg.sender;
+    }
 
     // Get balance of an account
     function getBalance(address account) public view returns(uint) {
         return balanceOf(account) / 10**decimals();
     }
+    
+    modifier isOwner {
+		require (owner == msg.sender, "Only the owner can mint.");
+		_;
+	}
 
     // Mint new tokens to an address
-    function mintToken(address to, uint amount) public {
+    function mintToken(address to, uint amount) public isOwner {
         uint actualAmount = amount * 10**decimals();
         _mint(to, actualAmount);
         increaseAllowance(to, actualAmount);

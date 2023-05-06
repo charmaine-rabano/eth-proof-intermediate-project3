@@ -11,6 +11,7 @@ function App() {
   const [tokenName, setTokenName] = useState();
   const [tokenSymbol, setTokenSymbol] = useState();
   const [tokenSupply, setTokenSupply] = useState();
+  const [tokenOwner, setTokenOwner] = useState();
   const [accountBalance, setAccountBalance] = useState();
 
   const [mintAddressInput, setMintAddressInput] = useState();
@@ -50,6 +51,7 @@ function App() {
       setTokenName(await contract.name());
       setTokenSymbol(await contract.symbol());
       setTokenSupply((await contract.getTotalSupply()).toNumber());
+      setTokenOwner((await contract.owner()).toLowerCase());
     }
     getBalance();
   }
@@ -104,23 +106,32 @@ function App() {
         <h3>Token Info</h3>
         <p>Name: {tokenName} | Symbol: {tokenSymbol} | Total supply: {tokenSupply} {tokenSymbol}</p>
 
-        <p style={{marginTop:"50px"}}>Your Metamask wallet: {account}</p>
-        <p>Your balance: {accountBalance === undefined ? 0 : accountBalance} {tokenSymbol}</p>
+        <div style={{margin:"50px 0"}}>
+          <p>
+            Your Metamask wallet: {account} {' '}
+            {account === tokenOwner ? <span style={{backgroundColor: "yellow"}}>TOKEN OWNER</span> : ''}
+          </p>
+          <p>Your balance: {accountBalance === undefined ? 0 : accountBalance} {tokenSymbol}</p>
+        </div>
 
-        <h3 style={{marginTop:"50px"}}>Mint {tokenName} tokens</h3>
-        <input 
-          type="text" 
-          placeholder="Enter address" 
-          value={mintAddressInput} 
-          onChange={e => setMintAddressInput(e.target.value)}
-          ></input>
-        <input 
-          type="number" 
-          placeholder="Enter amount to mint" 
-          value={mintAmountInput} 
-          onChange={e => setMintAmountInput(e.target.value)}
-          ></input>
-        <button onClick={handleMint}>Mint</button>
+        {account === tokenOwner ? 
+          <>
+            <h3>Mint {tokenName} tokens</h3>
+            <input 
+              type="text" 
+              placeholder="Enter address" 
+              value={mintAddressInput} 
+              onChange={e => setMintAddressInput(e.target.value)}
+              ></input>
+            <input 
+              type="number" 
+              placeholder="Enter amount to mint" 
+              value={mintAmountInput} 
+              onChange={e => setMintAmountInput(e.target.value)}
+              ></input>
+            <button onClick={handleMint}>Mint</button>
+          </>
+        : ''}
 
         <h3>Transfer {tokenName} tokens</h3>
         <input 
